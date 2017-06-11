@@ -13,6 +13,6 @@ find . -name "*java" -type f > files.txt
 mkdir target
 javac  -cp $CLASSPATH  @files.txt -d target
 cp -r src/main/resources/* target/
-java -cp $CLASSPATH:target com.hazelcast.certification.process.SlaveMain
+java -cp $CLASSPATH:target com.hazelcast.certification.process.MemberMain
 
 
