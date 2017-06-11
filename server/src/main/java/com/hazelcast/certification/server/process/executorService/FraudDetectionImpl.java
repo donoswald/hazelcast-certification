@@ -77,7 +77,11 @@ public class FraudDetectionImpl extends FraudDetection {
 
         if (histTrxs != null && !histTrxs.isEmpty()) {
             RuleEngine ruleEngine = new RuleEngine(transaction, histTrxs);
-            ruleEngine.executeRules();
+            try{
+                ruleEngine.executeRules();
+            }catch (ArithmeticException e){
+                log.severe("error executing rules",e);
+            }
             Result result = new Result();
             result.setCreditCardNumber(transaction.getCreditCardNumber());
             result.setFraudTransaction(ruleEngine.isFraudTxn());
