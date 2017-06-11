@@ -87,8 +87,10 @@ public class FraudDetectionImpl extends FraudDetection {
             result.setFraudTransaction(ruleEngine.isFraudTxn());
             registerResult(result);
         }
-        histTrxs.add(transaction);
-        allHistory.set(transaction.getCreditCardNumber(), histTrxs);
+        if(histTrxs!=null){
+            histTrxs.add(transaction);
+            allHistory.set(transaction.getCreditCardNumber(), histTrxs);
+        }
 
 
     }
@@ -126,7 +128,7 @@ public class FraudDetectionImpl extends FraudDetection {
             if (numberOfWorkersString != null) {
                 numberOfWorkers = Integer.valueOf(numberOfWorkersString);
             } else {
-                numberOfWorkers = 8;
+                numberOfWorkers = 4;
             }
 
         } catch (IOException e) {
