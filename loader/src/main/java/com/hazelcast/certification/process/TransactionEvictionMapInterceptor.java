@@ -16,14 +16,6 @@ import java.util.List;
  * Created by michi on 09.06.17.
  */
 public class TransactionEvictionMapInterceptor implements MapInterceptor, Serializable {
-    private IMap original;
-
-    private IMap getOriginal(){
-        if(original==null){
-            original = Hazelcast.newHazelcastInstance().getMap(FraudDetectionConstants.HIST_TRX_MAP_NAME);
-        }
-        return original;
-    }
 
     @Override
     public Object interceptGet(Object o) {
@@ -43,7 +35,6 @@ public class TransactionEvictionMapInterceptor implements MapInterceptor, Serial
                 it.remove();
             }
         }
-        getOriginal().set(creditCardNumber, transactions);
         return transactions;
     }
 
