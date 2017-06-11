@@ -34,7 +34,7 @@ public class HistoricalTransactionLoaderImpl implements HistoricalTransactionsLo
         try {
 
             IMap<String, List<Transaction>> historicalTransactions = instance.getMap(FraudDetectionConstants.HIST_TRX_MAP_NAME);
-            historicalTransactions.addInterceptor(new TransactionEvictionMapInterceptor(historicalTransactions));
+            historicalTransactions.addInterceptor(new TransactionEvictionMapInterceptor());
             for (int i = 0; i < MAX_CC_COUNT; i++) {
                 String creditCardNumber = trxUtil.generateCreditCardNumber(i);
                 List<Transaction> transactions = trxUtil.createAndGetCreditCardTransactions(creditCardNumber, TRX_COUNT);

@@ -1,22 +1,28 @@
 package com.hazelcast.certification.process;
 
+import com.hazelcast.certification.domain.FraudDetectionConstants;
 import com.hazelcast.certification.domain.Transaction;
+import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.IMap;
-import com.hazelcast.core.Member;
-import com.hazelcast.core.MultiMap;
 import com.hazelcast.map.MapInterceptor;
 import org.joda.time.DateTime;
 
-import java.util.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by michi on 09.06.17.
  */
-public class TransactionEvictionMapInterceptor implements MapInterceptor {
-    private IMap<String, List<Transaction>> original;
+public class TransactionEvictionMapInterceptor implements MapInterceptor, Serializable {
+    private IMap original;
 
-    public TransactionEvictionMapInterceptor(IMap<String, List<Transaction>> original) {
-        this.original = original;
+    private IMap getOriginal(){
+        if(original==null){
+            original = Hazelcast.newHazelcastInstance().getMap(FraudDetectionConstants.HIST_TRX_MAP_NAME);
+        }
+        return original;
     }
 
     @Override
@@ -37,7 +43,7 @@ public class TransactionEvictionMapInterceptor implements MapInterceptor {
                 it.remove();
             }
         }
-        original.set(creditCardNumber, transactions);
+        getOriginal().set(creditCardNumber, transactions);
         return transactions;
     }
 
