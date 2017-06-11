@@ -1,5 +1,0 @@
-./src/main/java/com/hazelcast/certification/process/TransactionEvictionMapInterceptor.java
-./src/main/java/com/hazelcast/certification/process/LoaderMain.java
-./src/main/java/com/hazelcast/certification/process/SlaveMain.java
-./src/main/java/com/hazelcast/certification/process/HistoricalTransactionsLoader.java
-./src/main/java/com/hazelcast/certification/process/HistoricalTransactionLoaderImpl.java
