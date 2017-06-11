@@ -128,7 +128,7 @@ public class FraudDetectionImpl extends FraudDetection {
             if (numberOfWorkersString != null) {
                 numberOfWorkers = Integer.valueOf(numberOfWorkersString);
             } else {
-                numberOfWorkers = 4;
+                numberOfWorkers = 8;
             }
 
         } catch (IOException e) {
