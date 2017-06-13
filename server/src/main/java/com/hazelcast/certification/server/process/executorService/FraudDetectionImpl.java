@@ -31,7 +31,7 @@ public class FraudDetectionImpl extends FraudDetection {
     private int numberOfWorkers;
 
 
-    private HazelcastInstance hazelcastInstance;
+    private IMap<String, List<Transaction>> allHistory;
     private ILock historicalTransactionLock;
     private AtomicBoolean checkLock = new AtomicBoolean(true);
 
@@ -41,8 +41,9 @@ public class FraudDetectionImpl extends FraudDetection {
 
     private void init() {
         ClientConfig config = new XmlClientConfigBuilder(getClass().getClassLoader().getResourceAsStream("hazelcast-client.xml")).build();
-        hazelcastInstance = HazelcastClient.newHazelcastClient(config);
-        historicalTransactionLock = hazelcastInstance.getLock(FraudDetectionConstants.HIST_TRX_LOCK);
+        HazelcastInstance instance = HazelcastClient.newHazelcastClient(config);
+        historicalTransactionLock = instance.getLock(FraudDetectionConstants.HIST_TRX_LOCK);
+        allHistory = instance.getMap(FraudDetectionConstants.HIST_TRX_MAP_NAME);
         loadProperties();
     }
 
@@ -70,7 +71,7 @@ public class FraudDetectionImpl extends FraudDetection {
     private void processDetection() {
         Transaction transaction = nextTrx();
 
-        IMap<String, List<Transaction>> allHistory = hazelcastInstance.getMap(FraudDetectionConstants.HIST_TRX_MAP_NAME);
+
 
         List<Transaction> histTrxs = allHistory.get(transaction.getCreditCardNumber());
 
