@@ -2,4 +2,4 @@
 **files.txt
 /.idea/
 /out/
-
+**.~lock.*
