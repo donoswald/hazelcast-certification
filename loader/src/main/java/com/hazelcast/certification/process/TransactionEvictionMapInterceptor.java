@@ -1,9 +1,6 @@
 package com.hazelcast.certification.process;
 
-import com.hazelcast.certification.domain.FraudDetectionConstants;
 import com.hazelcast.certification.domain.Transaction;
-import com.hazelcast.core.Hazelcast;
-import com.hazelcast.core.IMap;
 import com.hazelcast.map.MapInterceptor;
 import org.joda.time.DateTime;
 
