@@ -14,5 +14,3 @@ mkdir target
 javac  -cp $CLASSPATH  @files.txt -d target
 cp -r src/main/resources/* target/
 java -cp $CLASSPATH:target com.hazelcast.certification.process.Size
-
-
