@@ -23,6 +23,9 @@ First run **member.sh** on each member participating on the cluster. Be sure to 
 to hold the whole 600 Mio transactions.
 In a second step start the **loader.sh**, which than initializes the cluster with the data.
 
+In the loader module there is an additional script **size.sh** which prints out the size of a transaction. This size is
+base of all calculations later for latency, cluster size and expected performance.
+
 ### Server Module
 The server connects to the cluster and listens on incomming transactions. It has a configurable number of worker threads
 which then check the incomming thransactions for frauds. They will get the historical transactions of
