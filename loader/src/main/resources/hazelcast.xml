@@ -8,7 +8,7 @@
         </join>
     </network>
     <native-memory enabled="true" allocator-type="POOLED">
-        <size value="100" unit="GIGABYTES"/>
+        <size value="62" unit="GIGABYTES"/>
     </native-memory>
     <map name="historicalTransactions">
         <in-memory-format>NATIVE</in-memory-format>
