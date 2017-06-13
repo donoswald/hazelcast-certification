@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class HistoricalTransactionLoaderImpl implements HistoricalTransactionsLoader {
     private final static ILogger log = Logger.getLogger(HistoricalTransactionLoaderImpl.class);
-    private static final int MAX_CC_COUNT = 30 * 1000 *  1000;
+    private static final int MAX_CC_COUNT = 30 * 1000 * 10;
 
     private static final int TRX_COUNT = 20;
 
@@ -38,7 +38,7 @@ public class HistoricalTransactionLoaderImpl implements HistoricalTransactionsLo
             for (int i = 0; i < MAX_CC_COUNT; i++) {
                 String creditCardNumber = trxUtil.generateCreditCardNumber(i);
                 List<Transaction> transactions = trxUtil.createAndGetCreditCardTransactions(creditCardNumber, TRX_COUNT);
-                historicalTransactions.set(creditCardNumber,transactions);
+                historicalTransactions.set(creditCardNumber, transactions);
             }
         } finally {
             lock.unlock();

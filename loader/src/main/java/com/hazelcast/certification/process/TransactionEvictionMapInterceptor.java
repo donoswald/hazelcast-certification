@@ -23,11 +23,10 @@ public class TransactionEvictionMapInterceptor implements MapInterceptor, Serial
         if (transactions == null || transactions.isEmpty()) {
             return new ArrayList<>();
         }
-        String creditCardNumber = transactions.get(0).getCreditCardNumber();
-        return evict(creditCardNumber, transactions);
+        return evict(transactions);
     }
 
-    private List<Transaction> evict(String creditCardNumber, List<Transaction> transactions) {
+    private List<Transaction> evict(List<Transaction> transactions) {
         for (Iterator<Transaction> it = transactions.iterator(); it.hasNext(); ) {
             Transaction histTransaction = it.next();
             DateTime trxDate = new DateTime(histTransaction.getTimeStamp());
