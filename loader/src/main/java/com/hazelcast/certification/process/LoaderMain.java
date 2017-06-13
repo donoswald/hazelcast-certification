@@ -16,7 +16,7 @@ public class LoaderMain {
     private final static ILogger log = Logger.getLogger(LoaderMain.class);
 
     public static void main(String[] args) throws InterruptedException {
-        System.setProperty("hazelcast.partition.count","9173");
+        System.setProperty("hazelcast.partition.count","2791");
         Config config = new XmlConfigBuilder(LoaderMain.class.getClassLoader().getResourceAsStream("hazelcast.xml")).build();
         HazelcastInstance instance = Hazelcast.newHazelcastInstance(config);
 
