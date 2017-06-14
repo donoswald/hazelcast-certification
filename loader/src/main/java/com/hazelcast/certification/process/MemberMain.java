@@ -10,7 +10,7 @@ import com.hazelcast.core.HazelcastInstance;
  */
 public class MemberMain {
     public static void main(String[] args) {
-        System.setProperty("hazelcast.partition.count","2791");
+        //System.setProperty("hazelcast.partition.count","2791");
         Config config = new XmlConfigBuilder(LoaderMain.class.getClassLoader().getResourceAsStream("hazelcast.xml")).build();
         HazelcastInstance instance = Hazelcast.newHazelcastInstance(config);
     }

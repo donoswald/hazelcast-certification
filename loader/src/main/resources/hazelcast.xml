@@ -8,12 +8,11 @@
         </join>
     </network>
     <native-memory enabled="true" allocator-type="POOLED">
-        <size value="62" unit="GIGABYTES"/>
+        <size value="6" unit="GIGABYTES"/>
     </native-memory>
     <map name="historicalTransactions">
         <in-memory-format>NATIVE</in-memory-format>
         <backup-count>0</backup-count>
-        <async-backup-count>1</async-backup-count>
         <read-backup-data>true</read-backup-data>
     </map>
 
