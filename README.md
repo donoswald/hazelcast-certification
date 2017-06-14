@@ -10,7 +10,7 @@ Thre Fraud Detection application consists of the following modules
 The common module is not really a module, because it is not deployable on its own.
 It contains the domain classes and the util classes to be used by the other modules.
 
-### Loader Modul
+### Loader Module
 The loader module has two different starting points
 * MemberMain, which participates in the cluster of the loaded transactions
 * LoaderMain, which initializes a distributed map containing the 600 Mio transactions
@@ -35,5 +35,5 @@ the given credit cards from the cluster to do the check.
 There is a **server.sh** script.
 You can start as many servers you like.
 
-### Generater Modul
+### Generater Module
 The generater module generates the transactions. Simply run the **generator.sh** script to run it.
