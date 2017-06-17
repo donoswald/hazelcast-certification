@@ -2,6 +2,7 @@ package com.hazelcast.certification.process;
 
 import com.hazelcast.certification.domain.FraudDetectionConstants;
 import com.hazelcast.certification.domain.Transaction;
+import com.hazelcast.certification.domain.TransactionList;
 import com.hazelcast.certification.util.TransactionsUtil;
 import com.hazelcast.config.Config;
 import com.hazelcast.config.XmlConfigBuilder;
@@ -16,7 +17,7 @@ import java.util.List;
  */
 public class HistoricalTransactionLoaderImpl implements HistoricalTransactionsLoader {
     private final static ILogger log = Logger.getLogger(HistoricalTransactionLoaderImpl.class);
-    private static final int MAX_CC_COUNT = 30 * 1000 * 80;
+    private static final int MAX_CC_COUNT = 30 * 1000 * 100;
 
     private static final int TRX_COUNT = 20;
 
@@ -36,9 +37,10 @@ public class HistoricalTransactionLoaderImpl implements HistoricalTransactionsLo
             IMap<String, List<Transaction>> historicalTransactions = instance.getMap(FraudDetectionConstants.HIST_TRX_MAP_NAME);
             historicalTransactions.addInterceptor(new TransactionEvictionMapInterceptor());
             for (int i = 0; i < MAX_CC_COUNT; i++) {
+                System.out.println(i);
                 String creditCardNumber = trxUtil.generateCreditCardNumber(i);
                 List<Transaction> transactions = trxUtil.createAndGetCreditCardTransactions(creditCardNumber, TRX_COUNT);
-                historicalTransactions.set(creditCardNumber, transactions);
+                historicalTransactions.set(creditCardNumber, new TransactionList(transactions));
             }
         } finally {
             lock.unlock();
